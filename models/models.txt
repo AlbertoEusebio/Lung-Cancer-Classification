@@ -1,0 +1,6 @@
+The model weights are available at the following link:
+
+https://drive.google.com/file/d/1v_ma-CYx9OAyd5fTy0h7cCrSNqi8DhiZ/view?usp=sharing
+
+
+In case of errors, please contact the authors through email or github, we will try to assist you as soon as possible. 
