@@ -12,8 +12,10 @@ DeepBreath AI is an end-to-end solution designed to assist radiologists and heal
 3. [Methods](#methods-)
 4. [Results](#results-)
 5. [Conclusion](#conclusion-)
-6. [Installation & Usage](#installation--usage-)
-7. [References](#references-)
+6. [Known Issues](#known-issues-)
+7. [Hardware Requirements](#hardware-requirements-)
+8. [Installation & Usage](#installation--usage-)
+9. [References](#references-)
 
 ---
 
@@ -47,6 +49,7 @@ Our dataset includes **CT scan slices** from **2,363 patients**, provided in **N
 - **Binary**: 1,793 benign vs. 570 malignant  
 - **Multi-class**: 5 imbalance-prone classes (1–5 malignancy scores)
 
+##### Data avilability🚨: The data is not made publicly available, as consense from the authors of the dataset was negated.
 ---
 
 ## Methods 🧪
@@ -93,6 +96,16 @@ We utilize **EfficientNet** variants, each customized for the specific task:
 
 ---
 
+## Known Issues
+
+- **Oversampling Instead of Undersampling**  
+  *Rationale*: When data is highly unbalanced, undersampling should be performed. However, we chose oversampling to preserve as many minority-class examples as possible. Undersampling would have reduced the diversity of the minority classes, potentially leading to worse generalization.
+
+- **Applying SMOTE Directly to Images**  
+  *Rationale*: While SMOTE is typically designed for tabular data, we adapted it for image data to increase the representation of minority classes without losing important image features. However, this approach may introduce some artifacts in the synthetic images.
+
+---
+
 ## Conclusion 🚀
 DeepBreath AI **demonstrates the feasibility** of automated lung cancer malignancy detection via deep learning. Our experiments show that **zoomed-slice binary classification** offers the most promising results. However, **multi-class classification** still faces challenges due to **imbalanced datasets** and subtle malignancy differences.
 
@@ -117,6 +130,16 @@ DeepBreath AI **demonstrates the feasibility** of automated lung cancer malignan
    ```bash
    jupiter notebook.ipynb
    ```
+---
+
+## Hardware Requirements 🖥️
+Our training setup was conducted on a **single NVIDIA Tesla P100 GPU** provided by Kaggle. While the code can be run on CPU, a GPU is strongly recommended to reduce training times.
+
+**Recommended Specifications**:
+- **GPU**: At least 1 × NVIDIA Tesla P100 (16GB) or equivalent/better
+- **Memory**: 16GB RAM (minimum)
+- **Processor**: Modern multi-core CPU
+- **Storage**: 1Gb storage
 ---
 
 ## References 📚
