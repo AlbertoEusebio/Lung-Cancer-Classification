@@ -1,77 +1,123 @@
-# DeepBreath AI - Lung Cancer Malignancy Score
+# DeepBreath AI 🫁 – Lung Cancer Malignancy Detection
 
-## Authors
-Sofia Brunori, Alberto Eusebio, Alessandro Tognotti, Andrea Tomasella
+> **Empowering early lung cancer detection with advanced deep learning models.** 🚀
 
-## Introduction
-Lung cancer (LC) remains one of the leading causes of death worldwide, with early diagnosis being critical for improving survival rates. Computed Tomography (CT) scans serve as a primary imaging modality for LC diagnosis, but manual analysis is time-consuming and prone to errors.
+DeepBreath AI is an end-to-end solution designed to assist radiologists and healthcare professionals in **identifying and classifying lung cancer malignancies** from CT scans. By leveraging advanced machine learning and data preprocessing techniques, our goal is to **accelerate diagnosis** and **improve patient outcomes**.
 
-DeepBreath AI aims to develop machine learning classifiers for lung cancer malignancy detection, assessing malignancy scores and confidence estimation across different input types. The classification task includes:
-- Binary classification (Benign: Classes 1, 2, 3 vs. Malignant: Classes 4, 5)
-- Multi-class malignancy classification (Classes 1-5)
-- Analysis of model performance using full-slice and zoomed-slice CT scans
+---
 
-## Dataset
-The dataset comprises CT scan slices from **2,363 patients**, each represented by:
-- A **full CT slice** (512x512 int16 matrix)
-- A **zoomed-in nodule slice** with varying dimensions
+## Table of Contents
+1. [About the Project](#about-the-project-)
+2. [Dataset](#dataset-)
+3. [Methods](#methods-)
+4. [Results](#results-)
+5. [Conclusion](#conclusion-)
+6. [Installation & Usage](#installation--usage-)
+7. [References](#references-)
 
-All slices are stored in **NRRD format** with Hounsfield Unit (HU) values.
+---
 
-### Class Distribution
-- **Binary classification**: 1,793 benign vs. 570 malignant samples
-- **Multi-class classification**: Imbalanced distribution across 5 malignancy scores
+## About the Project 🏥
+**Lung cancer (LC)** is one of the leading causes of cancer-related deaths worldwide. **Early detection** is crucial for improving survival rates. However, manual analysis of **CT scans** can be time-consuming and prone to errors.
 
-## Methods
-### Data Preprocessing
-1. **Normalization**: Min-max normalization applied to scale values within [0,1].
-2. **HU Windowing Transformation**: Applied to enhance lung tumor visibility.
-   - Window width: **1300**, Window level: **-220**
-3. **Augmentation**: Applied based on classification task.
-4. **Balancing Techniques**:
-   - **Binary classification**: Random oversampling
-   - **Multi-class classification**: SMOTE + class weight balancing
+### What Does DeepBreath AI Do? 💡
+1. **Binary Malignancy Classification** 🔵  
+   - Distinguishes **benign** (Classes 1, 2, 3) from **malignant** (Classes 4, 5) tumors.
+2. **Multi-class Malignancy Classification** 🌈  
+   - Predicts one of five malignancy scores (1–5).
+3. **Full-Slice vs. Zoomed-Slice Analysis** 🔍  
+   - Evaluates performance on both the **entire CT slice** and a **zoomed-in nodule slice** to better capture tumor details.
 
-### Model Architectures
-EfficientNet-based architectures were employed for different classification tasks:
-- **Full-slice Binary Classification**: EfficientNetV2S with fine-tuning of last 10 layers
-- **Full-slice Multi-class Classification**: EfficientNetB1 with class balancing
-- **Zoomed-slice Binary Classification**: EfficientNetV2S with SMOTE augmentation
-- **Zoomed-slice Multi-class Classification**: EfficientNetB0 with oversampling and augmentation
+### Authors 🧑‍💻
+- **Sofia Brunori**  
+- **Alberto Eusebio**  
+- **Alessandro Tognotti**  
+- **Andrea Tomasella**
 
-**Training Details**:
-- **Loss Function**: Focal Loss (multi-class), Binary Focal Crossentropy (binary)
-- **Optimization**: Adam Optimizer with learning rates from 1e-5 to 1e-3
-- **Callbacks**: EarlyStopping and ReduceLrOnPlateau applied for stability
+---
 
-## Results
-| Task                     | Accuracy  | Precision | Recall  | F1 Score | AUC  |
-|--------------------------|-----------|-----------|---------|----------|------|
-| Full-slice Binary       | 0.73 ±0.02 | 0.44 ±0.03 | 0.52 ±0.05 | 0.48 ±0.03 | 0.66 ±0.02 |
-| Full-slice Multi-class  | 0.23 ±0.04 | 0.20 ±0.04 | 0.21 ±0.05 | 0.19 ±0.04 | 0.51 ±0.04 |
-| Zoomed-slice Binary     | 0.72 ±0.03 | 0.45 ±0.05 | 0.63 ±0.08 | 0.52 ±0.05 | 0.75 ±0.04 |
-| Zoomed-slice Multi-class| 0.53 ±0.02 | 0.46 ±0.04 | 0.44 ±0.03 | 0.43 ±0.03 | 0.74 ±0.02 |
+## Dataset 📦
+Our dataset includes **CT scan slices** from **2,363 patients**, provided in **NRRD format** with Hounsfield Unit (HU) values.
 
-### Key Findings
-- **Binary classification tasks performed better** than multi-class classification.
-- **Zoomed-slice models outperformed full-slice models** due to improved tumor focus.
-- **Class imbalance significantly impacted performance**, requiring oversampling and weighted loss functions.
+- Each patient has:
+  1. A **full CT slice** (512×512 int16 matrix)
+  2. A **zoomed-in slice** focusing on the nodule
 
-## Conclusion
-DeepBreath AI demonstrates the feasibility of lung cancer malignancy detection using deep learning on CT scans. The results suggest that **zoomed-slice binary classification yields the most reliable performance**, while multi-class classification remains a challenge due to dataset imbalance and tumor visibility constraints.
+### Class Distribution 📊
+- **Binary**: 1,793 benign vs. 570 malignant  
+- **Multi-class**: 5 imbalance-prone classes (1–5 malignancy scores)
 
-Further improvements can be made through:
-- More advanced augmentation techniques
-- Exploration of transformer-based architectures
-- Additional balancing strategies for multi-class classification
+---
 
-## Installation & Usage
-### Prerequisites
-- Python 3.8+
-- TensorFlow, Keras
-- OpenCV, NumPy, Scikit-learn, Pandas, Matplotlib
-- SimpleITK (for NRRD format handling)
+## Methods 🧪
+### Data Preprocessing 🔧
+1. **Normalization**  
+   - Min-max normalization to scale values between [0, 1].
+2. **HU Windowing Transformation**  
+   - Emphasizes lung tumors using a window width of **1300** and a window level of **-220**.
+3. **Augmentation**  
+   - Applied for both binary and multi-class tasks to improve generalization.
+4. **Balancing Techniques**  
+   - **Binary**: Random oversampling  
+   - **Multi-class**: SMOTE + class weight balancing
 
-## References
-Refer to the full project documentation for additional details and cited research papers.
+### Model Architectures 🔮
+We utilize **EfficientNet** variants, each customized for the specific task:
 
+| Task                          | Architecture       | Notes                                        |
+|-------------------------------|--------------------|----------------------------------------------|
+| **Full-slice Binary**         | EfficientNetV2S   | Fine-tuning last 10 layers                  |
+| **Full-slice Multi-class**    | EfficientNetB1    | Class balancing + advanced preprocessing     |
+| **Zoomed-slice Binary**       | EfficientNetV2S   | SMOTE augmentation                           |
+| **Zoomed-slice Multi-class**  | EfficientNetB0    | Oversampling + augmentations                 |
+
+**Training Details**:  
+- **Loss Functions**: Binary Focal Crossentropy (binary) / Focal Loss (multi-class)  
+- **Optimizer**: Adam (learning rates from 1e-5 to 1e-3)  
+- **Callbacks**: EarlyStopping, ReduceLROnPlateau  
+
+---
+
+## Results 📈
+| Task                        | Accuracy   | Precision   | Recall   | F1 Score  | AUC      |
+|-----------------------------|-----------:|------------:|---------:|----------:|---------:|
+| **Full-slice Binary**       | 0.73 ±0.02 | 0.44 ±0.03  | 0.52 ±0.05 | 0.48 ±0.03 | 0.66 ±0.02 |
+| **Full-slice Multi-class**  | 0.23 ±0.04 | 0.20 ±0.04  | 0.21 ±0.05 | 0.19 ±0.04 | 0.51 ±0.04 |
+| **Zoomed-slice Binary**     | 0.72 ±0.03 | 0.45 ±0.05  | 0.63 ±0.08 | 0.52 ±0.05 | 0.75 ±0.04 |
+| **Zoomed-slice Multi-class**| 0.53 ±0.02 | 0.46 ±0.04  | 0.44 ±0.03 | 0.43 ±0.03 | 0.74 ±0.02 |
+
+### Key Observations 🔍
+- **Binary classification** consistently outperforms multi-class approaches.  
+- **Zoomed-slice models** often yield higher accuracy, indicating that focusing on the tumor region is beneficial.  
+- **Class imbalance** severely affects multi-class performance, highlighting the need for robust balancing strategies.
+
+---
+
+## Conclusion 🚀
+DeepBreath AI **demonstrates the feasibility** of automated lung cancer malignancy detection via deep learning. Our experiments show that **zoomed-slice binary classification** offers the most promising results. However, **multi-class classification** still faces challenges due to **imbalanced datasets** and subtle malignancy differences.
+
+**Future Directions**:
+- Expanding data with **more advanced augmentation**.  
+- Investigating **transformer-based architectures**.  
+- Exploring additional **balancing strategies** to tackle class imbalance.
+
+---
+
+## Installation & Usage ⚙️
+1. **Clone the Repository**  
+   ```bash
+   git clone https://github.com/yourusername/DeepBreathAI.git
+   cd DeepBreathAI
+   ```
+2. **Install Dependencies**
+   ```bash
+   pip install -r requirements.txt
+   ```
+3. **Run the Training Scripts**  
+   ```bash
+   jupiter notebook.ipynb
+   ```
+---
+
+## References 📚
+For more in-depth explanations, methodology, and research citations, please refer to the associated research report.
