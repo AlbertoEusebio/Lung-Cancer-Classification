@@ -13,8 +13,8 @@ DeepBreath AI is an end-to-end solution designed to assist radiologists and heal
 4. [Results](#results-)
 5. [Conclusion](#conclusion-)
 6. [Known Issues](#known-issues-)
-7. [Hardware Requirements](#hardware-requirements-)
-8. [Installation & Usage](#installation-&-usage-)
+7. [Hardware Requirements](#hardware-requirements-%EF%B8%8F)
+8. [Installation & Usage](#installation--usage-%EF%B8%8F) 
 9. [References](#references-)
 
 ---
@@ -112,10 +112,11 @@ DeepBreath AI **demonstrates the feasibility** of automated lung cancer malignan
 
 - **Applying SMOTE Directly to Images**  
   *Rationale*: While SMOTE is typically designed for tabular data, we adapted it for image data to increase the representation of minority classes without losing important image features. However, this approach may introduce some artifacts in the synthetic images.
-
+  
 ---
 
 ## Hardware Requirements 🖥️
+
 Our training setup was conducted on a **single NVIDIA Tesla P100 GPU** provided by Kaggle. While the code can be run on CPU, a GPU is strongly recommended to reduce training times.
 
 **Recommended Specifications**:
@@ -123,7 +124,6 @@ Our training setup was conducted on a **single NVIDIA Tesla P100 GPU** provided 
 - **Memory**: 16GB RAM (minimum)
 - **Processor**: Modern multi-core CPU
 - **Storage**: 1Gb storage
-
 ---
 
 ## Installation & Usage ⚙️
@@ -140,7 +140,6 @@ Our training setup was conducted on a **single NVIDIA Tesla P100 GPU** provided 
    ```bash
    jupiter notebook.ipynb
    ```
-
 ---
 
 ## References 📚
