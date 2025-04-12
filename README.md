@@ -96,8 +96,17 @@ We utilize **EfficientNet** variants, each customized for the specific task:
 
 ---
 
-## Known Issues
+## Conclusion 🚀
+DeepBreath AI **demonstrates the feasibility** of automated lung cancer malignancy detection via deep learning. Our experiments show that **zoomed-slice binary classification** offers the most promising results. However, **multi-class classification** still faces challenges due to **imbalanced datasets** and subtle malignancy differences.
 
+**Future Directions**:
+- Expanding data with **more advanced augmentation**.  
+- Investigating **transformer-based architectures**.  
+- Exploring additional **balancing strategies** to tackle class imbalance.
+
+---
+
+## Known Issues 🚨
 - **Oversampling Instead of Undersampling**  
   *Rationale*: When data is highly unbalanced, undersampling should be performed. However, we chose oversampling to preserve as many minority-class examples as possible. Undersampling would have reduced the diversity of the minority classes, potentially leading to worse generalization.
 
@@ -106,13 +115,14 @@ We utilize **EfficientNet** variants, each customized for the specific task:
 
 ---
 
-## Conclusion 🚀
-DeepBreath AI **demonstrates the feasibility** of automated lung cancer malignancy detection via deep learning. Our experiments show that **zoomed-slice binary classification** offers the most promising results. However, **multi-class classification** still faces challenges due to **imbalanced datasets** and subtle malignancy differences.
+## Hardware Requirements 🖥️
+Our training setup was conducted on a **single NVIDIA Tesla P100 GPU** provided by Kaggle. While the code can be run on CPU, a GPU is strongly recommended to reduce training times.
 
-**Future Directions**:
-- Expanding data with **more advanced augmentation**.  
-- Investigating **transformer-based architectures**.  
-- Exploring additional **balancing strategies** to tackle class imbalance.
+**Recommended Specifications**:
+- **GPU**: At least 1 × NVIDIA Tesla P100 (16GB) or equivalent/better
+- **Memory**: 16GB RAM (minimum)
+- **Processor**: Modern multi-core CPU
+- **Storage**: 1Gb storage
 
 ---
 
@@ -130,16 +140,7 @@ DeepBreath AI **demonstrates the feasibility** of automated lung cancer malignan
    ```bash
    jupiter notebook.ipynb
    ```
----
 
-## Hardware Requirements 🖥️
-Our training setup was conducted on a **single NVIDIA Tesla P100 GPU** provided by Kaggle. While the code can be run on CPU, a GPU is strongly recommended to reduce training times.
-
-**Recommended Specifications**:
-- **GPU**: At least 1 × NVIDIA Tesla P100 (16GB) or equivalent/better
-- **Memory**: 16GB RAM (minimum)
-- **Processor**: Modern multi-core CPU
-- **Storage**: 1Gb storage
 ---
 
 ## References 📚
