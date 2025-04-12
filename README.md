@@ -113,7 +113,7 @@ DeepBreath AI **demonstrates the feasibility** of automated lung cancer malignan
    ```bash
    pip install -r requirements.txt
    ```
-3. **Run the Training Scripts**  
+3. **Run the notebooks**  
    ```bash
    jupiter notebook.ipynb
    ```
