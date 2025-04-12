@@ -1,0 +1,26 @@
+```txt
+# requirements.txt
+
+# Core Machine Learning and Deep Learning Framework
+tensorflow>=2.4
+# Keras is included within TensorFlow 2.x, but you can list it explicitly if needed
+keras>=2.4
+
+# Image Processing
+opencv-python>=4.5
+
+# Numerical Computing
+numpy>=1.19
+
+# Machine Learning Utilities
+scikit-learn>=0.24
+
+# Data Manipulation
+pandas>=1.2
+
+# Plotting and Visualization
+matplotlib>=3.3
+
+# Medical Image I/O (NRRD handling)
+SimpleITK>=2.0
+```
