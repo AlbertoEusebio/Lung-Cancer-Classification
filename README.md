@@ -14,7 +14,7 @@ DeepBreath AI is an end-to-end solution designed to assist radiologists and heal
 5. [Conclusion](#conclusion-)
 6. [Known Issues](#known-issues-)
 7. [Hardware Requirements](#hardware-requirements-)
-8. [Installation & Usage](#installation--usage-)
+8. [Installation & Usage](#installation-&-usage-)
 9. [References](#references-)
 
 ---
